@@ -4,7 +4,6 @@ use self::sqlite3::{
 	DatabaseConnection,
 	Query,
 	ResultRow,
-	ResultRowAccess,
 	SqliteResult,
 	StatementUpdate,
 	PreparedStatement,
@@ -37,7 +36,7 @@ pub struct Storage<'a> {
 impl<'a> Storage<'a> {
 
 	pub fn new(filename: &'a str, table: &'a str, field_names: &'a [&'a str]) -> Storage<'a> {
-		let mut connection = Storage::connect(filename);
+		let connection = Storage::connect(filename);
 
 		Storage {
 			connection: connection,
@@ -112,7 +111,7 @@ impl<'a> Storage<'a> {
 	}
 
 	pub fn add<T: Model>(&self, model: T) {
-		let sql = "insert into " + self.table + " () values " + model.vales() + ";";
+		let sql = "insert into ".to_string() + self.table + " () values " + ";";
 	}
 
 	fn connect(filename: &'a str) -> DatabaseConnection {
