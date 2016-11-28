@@ -1,5 +1,5 @@
 [package]
-name = "rust-db"
+name = "rustdb"
 version = "0.1.0"
 authors = ["George Komarov <geoolekom@gmail.com>"]
 
