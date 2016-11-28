@@ -14,8 +14,12 @@ macro_rules! dao {
 		}
 
 		impl Model for $name {
-		    fn column_names() -> Vec<&'static str> {
+		    fn field_names() -> Vec<&'static str> {
 		    	vec![$(stringify!($field)),*]
+		    }
+
+		    fn field_types() -> Vec<&'static str> {
+		    	vec![$(stringify!($class)),*]
 		    }
 
 			fn new(row: &mut ResultRow) -> Self {

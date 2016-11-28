@@ -5,7 +5,7 @@ use rustdb::storage::{Model, Storage};
 
 dao! {
 	struct User {
-	    id: i32,
+		id: i32,
 	    username: String,
 	    password: String,
 	    salt: String,
@@ -15,12 +15,15 @@ dao! {
 fn main() {
 
 	//let columns = ["id serial primary key", "username varchar", "password varchar", "salt varchar"];
-	let columns = User::column_names();
+	let field_names = User::field_names();
+	let field_types = User::field_types();
 
-	let users = Storage::open(
+	let users = Storage::new(
 		"/home/geoolekom/rust/rust-db/storage/storage.sqlite3", 
-		"Users", 
-		&columns[..]);
+		"Losers", 
+		&field_names[..]);
+
+	users.open();
 
 	let users_got = users.get::<User>("username='geoolekom'").unwrap();
 
